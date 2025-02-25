@@ -2,3 +2,17 @@
 name = "aardwolf-api-backend"
 version = "0.1.0"
 edition = "2021"
+[dependencies]
+actix-web = "4.9.0"
+
+[lib]
+name = "api_backend_routes"
+path = "src/api_backend.rs"
+
+[[bin]]
+name = "api_backend_routes"
+path = "src/api_backend.rs"
+
+[[bin]]
+name = "backend_actix"
+path = "src/actix_routing.rs"

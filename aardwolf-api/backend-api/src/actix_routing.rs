@@ -38,7 +38,7 @@ async fn main() -> std::io::Result<()> {
             .route("/api/users/:userId", web::delete().to())
             .route("/api/posts", web::get().to())
     })
-    .bind("127.0.0.1:8080")?
-    .run()
-    .await
+        .bind("127.0.0.1:8080")?
+        .run()
+        .await
 }
