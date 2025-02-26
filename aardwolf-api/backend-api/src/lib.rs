@@ -1,4 +1,4 @@
 
 // API backend modules
-mod api_backend;
+mod backend_endpoints;
 mod actix_routing;

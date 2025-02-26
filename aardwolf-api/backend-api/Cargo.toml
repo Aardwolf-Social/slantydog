@@ -2,17 +2,31 @@
 name = "aardwolf-api-backend"
 version = "0.1.0"
 edition = "2021"
+authors = ["BanjoFox <drbanjofox@protonmail.com>"]
+description = "Backend API for Aardwolf"
+license = "AGPL-3"
+documentation = "https://docs.rs/aardwolf-api-backend"
+repository = "https://github.com/SlantyDog/aardwolf-api"
+
 [dependencies]
-actix-web = "4.9.0"
+actix-web = { version = "4.9.0", features = ["openssl", "rustls"] }
 
 [lib]
-name = "api_backend_routes"
+name = "backend_endpoints"
+path = "src/backend_endpoints.rs"
+
+[[lib]]
+name = "api_backend"
 path = "src/api_backend.rs"
 
-[[bin]]
-name = "api_backend_routes"
-path = "src/api_backend.rs"
+[[lib]]
+name = "backend_warp"
+path = "src/warp_routing.rs"
+optional = true
 
 [[bin]]
 name = "backend_actix"
 path = "src/actix_routing.rs"
+
+[features]
+default = ["actix-web"]
