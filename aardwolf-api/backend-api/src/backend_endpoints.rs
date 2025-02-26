@@ -1,4 +1,4 @@
-// endpoints
+// backend_endpoints
 
 use actix_web::{web, HttpResponse, Responder};
 
@@ -30,4 +30,36 @@ async fn delete_user(user_id: web::Path<String>) -> impl Responder {
 async fn get_posts() -> impl Responder {
     // Logic to retrieve a list of posts (replace this with actual implementation)
     HttpResponse::Ok().json("List of posts")
+}
+
+// Database endpoints
+
+pub fn endpoints(cfg: &mut web::ServiceConfig) {
+    cfg.service(
+        web::resource("/api/users")
+            .route(web::get().to(get_users))
+            .route(web::post().to(create_post)),
+    )
+        .service(
+            web::resource("/api/users/{userId}/posts")
+                .route(web::get().to(get_posts)),
+        )
+        .service(
+            web::resource("/api/posts")
+                .route(web::get().to(get_posts))
+                .route(web::post().to(create_post)),
+        )
+        .service(
+            web::resource("/api/posts/{postId}")
+                .route(web::put().to(update_post))
+                .route(web::delete().to(delete_post)),
+        )
+        .service(
+            web::resource("/api/posts/{postId}/like")
+                .route(web::post().to(like_post)),
+        )
+        .service(
+            web::resource("/api/posts/{postId}/comment")
+                .route(web::post().to(comment_post)),
+        );
 }

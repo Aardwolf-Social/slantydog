@@ -1,0 +1,39 @@
+.
+├── Cargo.lock
+├── Cargo.toml
+├── LICENSE.md
+├── README.md
+├── aardwolf-api
+│   ├── README.md
+│   ├── backend-api
+│   │   ├── Cargo.lock
+│   │   ├── Cargo.toml
+│   │   ├── README.md
+│   │   └── src
+│   │       ├── actix_routing.rs
+│   │       ├── backend_endpoints.rs
+│   │       ├── lib.rs
+│   │       ├── main.rs
+│   │       └── warp_routing.rs
+│   ├── database-api
+│   │   ├── Cargo.lock
+│   │   ├── Cargo.toml
+│   │   ├── README.md
+│   │   └── src
+│   │       ├── database_api.rs
+│   │       ├── lib.rs
+│   │       ├── mysql.rs
+│   │       ├── postgres.rs
+│   │       └── sqlite.rs
+│   └── frontend-api
+│       ├── Cargo.lock
+│       ├── Cargo.toml
+│       ├── README.md
+│       └── src
+│           ├── api_post_routes.rs
+│           ├── api_user_routes.rs
+│           └── lib.rs
+└── src
+    └── main.rs
+
+8 directories, 29 files
