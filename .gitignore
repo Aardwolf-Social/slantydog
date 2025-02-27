@@ -8,6 +8,9 @@
 .idea/
 .qodo/
 
+# Apparently JetBrains RustRover REALLY wants this too?
+.qodo 
+
 # This is used for Docker
 .env
 
