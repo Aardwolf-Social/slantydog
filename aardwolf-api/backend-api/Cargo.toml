@@ -12,13 +12,9 @@ repository = "https://github.com/SlantyDog/aardwolf-api"
 actix-web = { version = "4.9.0", features = ["openssl", "rustls"], optional = true }
 warp = { version = "0.3", optional = true }
 
-[lib]
-name = "backend_endpoints"
-path = "src/backend_endpoints.rs"
-
 [[bin]]
 name = "api_backend"
-path = "src/main.rs"
+path = "src/backend.rs"
 
 [features]
 default = ["actix-web"]
