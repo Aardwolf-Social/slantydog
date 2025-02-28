@@ -2,3 +2,7 @@
 name = "aardwolf-api-database"
 version = "0.1.0"
 edition = "2021"
+
+[dependencies]
+diesel = "2.2.7"
+diesel-derive-enum = "2.1.0"
