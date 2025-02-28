@@ -10,18 +10,3 @@ name = "aardwolf-api"
 version = "0.1.0"
 edition = "2021"
 
-[[bin]]
-name = "aardwolf-api"
-path = "src/main.rs"
-
-[[lib]]
-name = "backend"
-path = "backend-api/src/backend.rs"
-
-[[lib]]
-name = "frontend"
-path = "frontend-api/src/frontend_api.rs"
-
-[[lib]]
-name = "database"
-path = "database-api/src/database_api.rs"
