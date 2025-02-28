@@ -1,8 +1,7 @@
 // tests/models.rs
 #[cfg(test)]
 mod tests {
-    use super::models;
-
+    use aardwolf_api_common::models;
     #[test]
     fn test_post_data() {
         // Test the PostData struct here...

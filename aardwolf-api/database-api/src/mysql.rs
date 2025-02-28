@@ -1,6 +1,7 @@
 // mysql
 
 use crate::database_api::{DbHandler, Post, Comment, Error};
+use crate::mysql;
 
 pub struct MySqlHandler {
     connection: mysql::PooledConn,

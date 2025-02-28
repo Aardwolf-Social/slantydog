@@ -1,13 +1,13 @@
 // postgres.rs
 
-use crate::database_api::{DbHandler, Post, Comment, Error};
 use diesel::pg::PgConnection;
 use diesel::r2d2::ConnectionManager;
 use diesel::r2d2::Pool;
+use crate::database_api::DbHandler;
 
 pub struct PostgresHandler {
     connection: PgConnection,
-    pool: Pool,
+    pool: Pool<ConnectionManager<PgConnection>>,
     connection_url: String,
     is_active: bool,
     schema: Vec<String>,

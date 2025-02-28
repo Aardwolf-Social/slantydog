@@ -6,3 +6,6 @@ edition = "2021"
 [lib]
 name = "aardwolf_api_common"
 path = "src/lib.rs"
+
+[dependencies]
+serde = { version = "1.0.218", features = ["derive"] }
