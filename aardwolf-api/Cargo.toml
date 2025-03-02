@@ -1,0 +1,12 @@
+[workspace]
+members = [
+    "backend-api",
+    "frontend-api",
+    "database-api",
+]
+
+[package]
+name = "aardwolf-api"
+version = "0.1.0"
+edition = "2021"
+

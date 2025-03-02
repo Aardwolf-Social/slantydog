@@ -3,4 +3,9 @@ name = "slantydog"
 version = "0.1.0"
 edition = "2021"
 
+[[bin]]
+name = "aardwolf-api"
+path = "aardwolf-api/src/main.rs"
+
 [dependencies]
+serde = { version = "1.0.218", features = ["derive"] }

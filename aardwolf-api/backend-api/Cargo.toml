@@ -2,3 +2,17 @@
 name = "aardwolf-api-backend"
 version = "0.1.0"
 edition = "2021"
+authors = ["BanjoFox <drbanjofox@protonmail.com>"]
+description = "Backend API for Aardwolf"
+license = "AGPL-3"
+documentation = "https://docs.rs/aardwolf-api-backend"
+repository = "https://github.com/SlantyDog/aardwolf-api"
+
+[dependencies]
+actix-web = { version = "4.9.0", features = ["openssl", "rustls"], optional = true }
+warp = { version = "0.3", optional = true }
+aardwolf-api-common = { path = "../aardwolf-api-common" }
+
+[features]
+default = ["actix-web"]
+warp-backend = ["warp"]

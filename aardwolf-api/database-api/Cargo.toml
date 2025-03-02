@@ -2,3 +2,17 @@
 name = "aardwolf-api-database"
 version = "0.1.0"
 edition = "2021"
+
+[dependencies]
+diesel = { version = "2.2.7", features = ["postgres", "r2d2"] }
+diesel-derive-enum = "2.1.0"
+
+[dependencies.aardwolf-api-common]
+path = "../aardwolf-api-common"
+
+[features]
+default = ["postgres"]
+postgres = ["diesel/postgres"]
+mysql = ["diesel/mysql"]
+sqlite = ["diesel/sqlite"]
+
