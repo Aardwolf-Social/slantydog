@@ -9,6 +9,8 @@ pub struct Post {
     pub created_at: String,
     pub updated_at: String,
 }
+
+#[derive(Serialize, Deserialize)]
 pub struct PostData {
     pub title: String,
     pub content: String,

@@ -10,22 +10,24 @@ pub enum DbType {
     Sqlite,
 }
 
-enum DatabaseConnection {
-    PgConnection(PgConnection),
-    MysqlConnection(MysqlConnection),
-    SqliteConnection(SqliteConnection),
+use diesel::{connection, prelude::*};
+use diesel::r2d2::{ConnectionManager, Pool, PooledConnection};
+
+struct DatabaseConnectionPool {
+    pool: Pool<ConnectionManager<dyn diesel::Connection>>,
 }
 
-impl SimpleConnection for DatabaseConnection {
-    fn batch_execute(&mut self, query: &str) -> QueryResult<()> {
-        match self {
-            DatabaseConnection::PgConnection(conn) => conn.batch_execute(query),
-            DatabaseConnection::MysqlConnection(conn) => conn.batch_execute(query),
-            DatabaseConnection::SqliteConnection(conn) => conn.batch_execute(query),
-        }
+impl DatabaseConnectionPool {
+    fn new(url: &str) -> Self {
+        let manager = ConnectionManager::<dyn diesel::Connection>::new(url);
+        let pool = Pool::new(manager).unwrap();
+        DatabaseConnectionPool { pool }
+    }
+
+    fn get_connection(&self) -> PooledConnection<ConnectionManager<dyn diesel::Connection>> {
+        self.pool.get().unwrap()
     }
 }
-
 
 
 type PgPool = Pool<ConnectionManager<PgConnection>>;

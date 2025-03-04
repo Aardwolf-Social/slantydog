@@ -12,6 +12,8 @@ repository = "https://github.com/SlantyDog/aardwolf-api"
 actix-web = { version = "4.9.0", features = ["openssl", "rustls"], optional = true }
 warp = { version = "0.3", optional = true }
 aardwolf-api-common = { path = "../aardwolf-api-common" }
+tokio = { version = "1.43.0", features = ["rt", "rt-multi-thread", "macros"] }
+serde = { version = "1.0.218", features = ["derive"] }
 
 [features]
 default = ["actix-web"]
