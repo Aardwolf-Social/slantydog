@@ -1,16 +1,53 @@
-// Shared configuration for all APIs
 use config::{Config, ConfigError, File};
 use serde::Deserialize;
 
 #[derive(Debug, Deserialize)]
+pub struct BackendSettings {
+    pub engine: String,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct ActixSettings {
+    pub host: String,
+    pub port: u16,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct WarpSettings {
+    pub host: String,
+    pub port: u16,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct DatabaseSettings {
+    pub engine: String,
+}
+
+#[derive(Debug, Deserialize)]
+pub struct FrontendSettings {
+    pub engine: String,
+}
+
+#[derive(Debug, Deserialize)]
 pub struct Settings {
-    pub backend_engine: String,
+    pub backend: BackendSettings,
+    pub actix: Option<ActixSettings>, // Optional: Only used when Actix is selected
+    pub warp: Option<WarpSettings>,   // Optional: Only used when Warp is selected
+    pub database: DatabaseSettings,
+    pub frontend: FrontendSettings,
 }
 
 pub fn load_config() -> Result<Settings, ConfigError> {
     let settings = Config::builder()
         .add_source(File::with_name("config.toml"))
-        .build()?; // Build the Config object
+        .set_default("backend.engine", "actix")?
+        .set_default("actix.host", "127.0.0.1")?
+        .set_default("actix.port", 8080)?
+        .set_default("warp.host", "127.0.0.1")?
+        .set_default("warp.port", 8081)?
+        .set_default("database.engine", "postgres")?
+        .set_default("frontend.engine", "yew")?
+        .build()?;
 
-    settings.try_deserialize() // Convert it to our Settings struct
+    settings.try_deserialize()
 }
