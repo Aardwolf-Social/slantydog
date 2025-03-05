@@ -1,7 +1,9 @@
+// API backend_engines modules
 
-// API backend modules
-mod backend;
-// Main file for the backend API
+#[path = "backend_engines/lib.rs"]
+mod backend_engines;
+mod backend_main;
+// Main file for the backend_engines API
+mod direct_messages;
 pub mod endpoints;
 mod responses;
-mod direct_messages; 

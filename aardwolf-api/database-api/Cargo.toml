@@ -1,15 +1,20 @@
 [package]
-name = "aardwolf-api-database"
+name = "aardwolf-database-api"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+name = "database_api"
+path = "src/lib.rs"
+
 [dependencies]
+# Internal Dependencies
+aardwolf-api-common = { path = "../aardwolf-api-common" }
+
+# External Dependencies
 diesel = { version = "2.2.7", features = ["postgres", "r2d2"] }
 diesel-derive-enum = "2.1.0"
 serde = { version = "1.0.218", features = ["derive"] }
-
-[dependencies.aardwolf-api-common]
-path = "../aardwolf-api-common"
 
 [features]
 default = ["postgres"]

@@ -3,7 +3,7 @@ use warp::reject::Reject;
 
 impl Reject for ErrorResponse {}
 
-async fn create_post_warp(){
+async fn create_post_warp() {
     todo!()
 }
 
@@ -11,7 +11,7 @@ async fn get_posts_warp() {
     todo!()
 }
 
-pub fn routes()  {
+pub fn routes() {
     todo!()
 }
 

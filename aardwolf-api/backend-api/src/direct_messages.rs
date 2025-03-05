@@ -1,6 +1,6 @@
 // direct_messages.rs
-use serde::{Serialize, Deserialize};
 use crate::responses::Response;
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct PrivateMessage {

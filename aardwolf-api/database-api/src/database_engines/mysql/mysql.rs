@@ -3,7 +3,6 @@ use crate::databases::mysql;
 // mysql
 pub(crate) use diesel::mysql::MysqlConnection;
 
-
 pub struct MySqlHandler {
     connection: mysql::PooledConn,
     pool: mysql::Pool,

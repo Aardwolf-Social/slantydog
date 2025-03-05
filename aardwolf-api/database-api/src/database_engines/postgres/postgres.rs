@@ -22,17 +22,29 @@ pub struct PostgresHandler {
 }
 
 pub trait MyConnection {
-    fn execute_query(&mut self, query: Box<dyn QueryFragment<PgConnection> + 'static>) -> Result<(), DieselError>;
-    fn execute_transaction(&mut self, transaction: Box<dyn QueryFragment<PgConnection> + 'static>) -> Result<(), DieselError>;
+    fn execute_query(
+        &mut self,
+        query: Box<dyn QueryFragment<PgConnection> + 'static>,
+    ) -> Result<(), DieselError>;
+    fn execute_transaction(
+        &mut self,
+        transaction: Box<dyn QueryFragment<PgConnection> + 'static>,
+    ) -> Result<(), DieselError>;
 }
 
 impl MyConnection for PostgresHandler {
-    fn execute_query(&mut self, query: Box<dyn QueryFragment<PgConnection> + 'static>) -> Result<(), DieselError> {
+    fn execute_query(
+        &mut self,
+        query: Box<dyn QueryFragment<PgConnection> + 'static>,
+    ) -> Result<(), DieselError> {
         query.execute(&mut self.connection)?;
         Ok(())
     }
 
-    fn execute_transaction(&mut self, transaction: Box<dyn QueryFragment<PgConnection> + 'static>) -> Result<(), DieselError> {
+    fn execute_transaction(
+        &mut self,
+        transaction: Box<dyn QueryFragment<PgConnection> + 'static>,
+    ) -> Result<(), DieselError> {
         transaction.execute(&mut self.connection)?;
         Ok(())
     }
@@ -44,13 +56,13 @@ impl DbHandler for PostgresHandler {
 
         let connection = &self.connection;
 
-        let results = posts
-            .load::<PgSqlPost>(connection)
-            .optional()?;
+        let results = posts.load::<PgSqlPost>(connection).optional()?;
 
         match results {
             Some(posts) => Ok(posts.into_iter().map(Box::new).collect()),
-            None => Err(Box::new(PgSqlError { message: "Not found".to_string() })),
+            None => Err(Box::new(PgSqlError {
+                message: "Not found".to_string(),
+            })),
         }
     }
 

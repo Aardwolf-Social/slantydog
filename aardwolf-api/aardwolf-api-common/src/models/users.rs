@@ -1,5 +1,5 @@
 // users.rs
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize)]
 pub struct User {
@@ -11,5 +11,5 @@ pub struct User {
 pub struct UserData {
     pub id: i32,
     pub name: String,
-    pub email: String,  
-} 
+    pub email: String,
+}

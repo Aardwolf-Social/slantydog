@@ -4,7 +4,6 @@ use crate::Error;
 use crate::Post;
 pub(crate) use diesel::sqlite::SqliteConnection;
 
-
 pub struct SqliteHandler {
     connection: rusqlite::Connection,
     database_path: String,

@@ -8,4 +8,5 @@ name = "aardwolf_api_common"
 path = "src/lib.rs"
 
 [dependencies]
+config = "0.15.9"
 serde = { version = "1.0.218", features = ["derive"] }

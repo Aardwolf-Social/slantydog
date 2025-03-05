@@ -1,5 +1,5 @@
 // error.rs
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 pub trait Error {
     fn get_message(&self) -> String;

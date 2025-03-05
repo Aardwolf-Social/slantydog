@@ -1,5 +1,5 @@
 // posts.rs
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 pub trait Post {
     fn get_id(&self) -> i32;
     fn get_title(&self) -> String;
