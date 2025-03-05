@@ -2,4 +2,4 @@
 //!
 pub mod models;
 
-pub use models::posts::{Post, PostData};
+pub use models::posts::Post;

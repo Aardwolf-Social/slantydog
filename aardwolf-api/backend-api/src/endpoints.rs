@@ -1,7 +1,7 @@
 // Backend-agnostic endpoint definitions
-use aardwolf_api_common::{Post, PostData};
+use aardwolf_api_common::Post;
 
-pub(crate) async fn create_post(data: PostData) -> Result<Post, String> {
+pub(crate) async fn create_post(data: Post) -> Result<Post, String> {
     // Logic to create a new post (replace this with actual implementation)
     Ok(Post { id: 1, title: "New Post".to_string(), content: "This is a new post".to_string(), created_at: "".to_string(), updated_at: "".to_string() })
 }

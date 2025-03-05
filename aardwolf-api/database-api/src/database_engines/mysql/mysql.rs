@@ -1,7 +1,8 @@
+use crate::database::MyConnection;
+use crate::databases::mysql;
 // mysql
+pub(crate) use diesel::mysql::MysqlConnection;
 
-use crate::database_api::{DbHandler, Post, Comment, Error};
-use crate::mysql;
 
 pub struct MySqlHandler {
     connection: mysql::PooledConn,
@@ -11,6 +12,15 @@ pub struct MySqlHandler {
     schema: Vec<String>,
 }
 
+impl MyConnection for MysqlConnection {
+    fn execute_query(&self, query: &str) -> Result<(), diesel::result::Error> {
+        // implementation for MySQL
+    }
+
+    fn execute_transaction(&self, transaction: &str) -> Result<(), diesel::result::Error> {
+        // implementation for MySQL
+    }
+}
 impl DbHandler for MySqlHandler {
     fn get_posts(&self) -> Vec<dyn Post> {
         // implement mysql-specific logic to retrieve posts

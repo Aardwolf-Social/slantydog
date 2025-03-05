@@ -1,10 +1,9 @@
+use crate::direct_messages::PrivateMessageReply;
 use crate::endpoints::{create_post, get_posts};
 use aardwolf_api_common::models::PostData;
 use aardwolf_api_common::Post;
-use actix_web::{web, CustomizeResponder, HttpRequest, HttpResponse, Responder};
-use actix_web::http::header::TryIntoHeaderPair;
-use actix_web::http::StatusCode;
-use crate::direct_messages::PrivateMessageReply;
+use actix_web::body::BoxBody;
+use actix_web::{web, HttpRequest, HttpResponse, Responder};
 
 /// Creates a new post and returns the created post as a JSON response.
 async fn create_post_actix(data: web::Json<PostData>) -> HttpResponse {

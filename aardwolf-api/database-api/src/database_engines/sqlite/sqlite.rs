@@ -1,14 +1,25 @@
-// sqlite.rs
-
-use crate::database_api::DbHandler;
-use crate::Post;
+use crate::database::MyConnection;
 use crate::Error;
+// sqlite.rs
+use crate::Post;
+pub(crate) use diesel::sqlite::SqliteConnection;
+
 
 pub struct SqliteHandler {
     connection: rusqlite::Connection,
     database_path: String,
     is_active: bool,
     schema: Vec<String>,
+}
+
+impl MyConnection for SqliteConnection {
+    fn execute_query(&self, query: &str) -> Result<(), diesel::result::Error> {
+        // implementation for SQLite
+    }
+
+    fn execute_transaction(&self, transaction: &str) -> Result<(), diesel::result::Error> {
+        // implementation for SQLite
+    }
 }
 
 impl DbHandler for SqliteHandler {

@@ -1,7 +1,5 @@
-// Aardwolf API Database
-mod database;
-pub mod postgres;
-pub mod mysql;
-pub mod sqlite;
-mod database_api;
+// database-api/src/lib.rs
+pub mod database;
 
+pub use crate::database_engines::{postgres, sqlite, mysql};
+pub mod traits;

@@ -11,7 +11,7 @@ pub struct PrivateMessage {
     pub created_at: String,
 }
 
-pub struct PrivateMessageReply(PrivateMessage);
+pub struct PrivateMessageReply(pub(crate) PrivateMessage);
 
 impl Response for PrivateMessageReply {
     fn into_response(self) -> Self {
