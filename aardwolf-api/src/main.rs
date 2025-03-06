@@ -1,6 +1,6 @@
 // aardwolf-api/src/main.rs
 
-extern crate aardwolf-api-common as common;
+extern crate aardwolf_api_common as common;
 
 fn main() {
     // Test the models module

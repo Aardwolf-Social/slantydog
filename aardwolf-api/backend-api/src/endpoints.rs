@@ -1,24 +1,24 @@
 // Backend-agnostic endpoint definitions
-use aardwolf_api_common::Post;
+use aardwolf_api_common::models::posts::{Post, PostImpl};
+use chrono::Utc;
+use std::sync::Arc;
 
-pub(crate) async fn create_post() -> Result<dyn Post, String> {
-    // Logic to create a new post (replace this with actual implementation)
-    Ok(Post {
+pub(crate) async fn create_post(post: PostImpl) -> Result<Arc<dyn Post>, String> {
+    Ok(Arc::new(PostImpl {
         id: 1,
-        title: "New Post".to_string(),
-        content: "This is a new post".to_string(),
-        created_at: "".to_string(),
-        updated_at: "".to_string(),
-    })
+        title: post.title,
+        content: post.content,
+        created_at: Utc::now().to_rfc3339(),
+        updated_at: Utc::now().to_rfc3339(),
+    }))
 }
 
-pub(crate) async fn get_posts() -> Vec<dyn Post> {
-    // Logic to retrieve a list of posts (replace this with actual implementation)
-    vec![Post {
+pub(crate) async fn get_posts() -> Vec<Arc<dyn Post>> {
+    vec![Arc::new(PostImpl {
         id: 1,
         title: "Post 1".to_string(),
         content: "This is post 1".to_string(),
-        created_at: "".to_string(),
-        updated_at: "".to_string(),
-    }]
+        created_at: Utc::now().to_rfc3339(),
+        updated_at: Utc::now().to_rfc3339(),
+    })]
 }

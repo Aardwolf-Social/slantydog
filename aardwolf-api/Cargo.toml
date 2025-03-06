@@ -12,7 +12,7 @@ members = [
 ]
 
 [dependencies]
-aardwolf_api_common = { path = "aardwolf-api-common" }
+aardwolf-api-common = { path = "aardwolf-api-common" }
 
 [profile.dev]
 panic = "unwind"
