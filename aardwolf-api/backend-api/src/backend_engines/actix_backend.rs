@@ -6,14 +6,14 @@ use actix_web::{web, HttpRequest, HttpResponse, Responder};
 
 /// Creates a new post and returns the created post as a JSON response.
 async fn create_post_actix(data: web::Json<PostImpl>) -> HttpResponse {
-    match create_post(data).await {
+    match create_post(data.into_inner()).await {
         Ok(post) => HttpResponse::Created().json(post),
         Err(err) => HttpResponse::InternalServerError().body(err),
     }
 }
 
 async fn get_posts_actix() -> HttpResponse {
-    let posts = get_posts().await?;
+    let posts = get_posts().await;
     HttpResponse::Ok().json(posts)
 }
 
