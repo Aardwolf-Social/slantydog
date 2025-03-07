@@ -1,9 +1,10 @@
-// API backend_engines modules
-
-#[path = "backend_engines/lib.rs"]
-mod backend_engines;
-mod backend_main;
-// Main file for the backend_engines API
-mod direct_messages;
-pub mod endpoints;
-mod responses;
+// backend-api/src/lib.rs
+pub mod backend_engines {
+    pub mod actix_backend;
+    pub mod warp_backend;
+}
+pub mod routes {
+    pub mod posts;
+}
+pub use routes::posts; // Allows calling `crate::posts` directly
+pub mod responses;

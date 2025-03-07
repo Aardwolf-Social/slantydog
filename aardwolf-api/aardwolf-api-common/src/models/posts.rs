@@ -1,11 +1,12 @@
-// posts.rs
+// aardwolf-api-common/src/models/posts.rs
 use serde::{Deserialize, Serialize};
-pub trait Post {
+
+pub trait Post: Serialize + Send + Sync {
     fn get_id(&self) -> i32;
-    fn get_title(&self) -> String;
-    fn get_content(&self) -> String;
-    fn get_created_at(&self) -> String;
-    fn get_updated_at(&self) -> String;
+    fn get_title(&self) -> &str;
+    fn get_content(&self) -> &str;
+    fn get_created_at(&self) -> &str;
+    fn get_updated_at(&self) -> &str;
 }
 
 #[derive(Serialize, Deserialize)]
@@ -22,19 +23,29 @@ impl Post for PostImpl {
         self.id
     }
 
-    fn get_title(&self) -> String {
-        self.title.clone()
+    fn get_title(&self) -> &str {
+        &self.title
     }
 
-    fn get_content(&self) -> String {
-        self.content.clone()
+    fn get_content(&self) -> &str {
+        &self.content
     }
 
-    fn get_created_at(&self) -> String {
-        self.created_at.clone()
+    fn get_created_at(&self) -> &str {
+        &self.created_at
     }
 
-    fn get_updated_at(&self) -> String {
-        self.updated_at.clone()
+    fn get_updated_at(&self) -> &str {
+        &self.updated_at
     }
+}
+
+pub fn get_posts() -> Vec<PostImpl> {
+    vec![PostImpl {
+        id: 1,
+        title: "Example Post".to_string(),
+        content: "Hello, world!".to_string(),
+        created_at: "2025-03-07T12:00:00Z".to_string(),
+        updated_at: "2025-03-07T12:30:00Z".to_string(),
+    }]
 }
