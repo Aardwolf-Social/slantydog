@@ -1,4 +1,4 @@
-use crate::responses::ErrorResponse;
+use aardwolf_api_common::responses::ErrorResponse;
 use warp::reject::Reject;
 
 impl Reject for ErrorResponse {}

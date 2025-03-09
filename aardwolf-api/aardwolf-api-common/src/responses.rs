@@ -1,11 +1,13 @@
-// responses.rs
+// backend-api/src/routes/responses.rs
 pub trait Response {
-    fn into_response(self) -> Self;
+    type Output;
+
+    fn into_response(self) -> Self::Output;
 }
 
 #[derive(Debug)]
-pub(crate) struct ErrorResponse {
-    pub(crate) message: String,
+pub struct ErrorResponse {
+    pub message: String,
 }
 
 impl std::error::Error for ErrorResponse {}

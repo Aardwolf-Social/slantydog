@@ -1,5 +1,6 @@
 // aardwolf-api-common/src/models/direct_messages.rs
 use serde::{Deserialize, Serialize};
+use crate::responses::Response;
 
 #[derive(Serialize, Deserialize)]
 pub struct PrivateMessage {
@@ -12,3 +13,11 @@ pub struct PrivateMessage {
 
 #[derive(Serialize, Deserialize)]
 pub struct PrivateMessageReply(pub(crate) PrivateMessage);
+
+impl Response for PrivateMessageReply {
+    type Output = Self; // Keeps it agnostic
+
+    fn into_response(self) -> Self::Output {
+        self
+    }
+}

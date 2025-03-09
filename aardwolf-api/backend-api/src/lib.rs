@@ -6,5 +6,4 @@ pub mod backend_engines {
 pub mod routes {
     pub mod posts;
 }
-pub use routes::posts; // Allows calling `crate::posts` directly
-pub mod responses;
+pub use routes::posts;

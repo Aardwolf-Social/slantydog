@@ -2,8 +2,8 @@
 use aardwolf_api_common::models::direct_messages::{PrivateMessage, PrivateMessageReply}; // ✅ Use common direct_messages module
 use crate::routes::posts::{create_post, get_posts};
 use aardwolf_api_common::models::posts::PostImpl;
-use actix_web::body::BoxBody;
 use actix_web::{web, HttpRequest, HttpResponse, Responder, Scope};
+use crate::responses::Response;
 
 /// Creates a new post and returns the created post as JSON.
 async fn create_post_actix(data: web::Json<PostImpl>) -> HttpResponse {
@@ -32,11 +32,14 @@ async fn get_private_message_reply(data: web::Json<PrivateMessage>) -> HttpRespo
     HttpResponse::Ok().json(reply) // ✅ Placeholder response for now
 }
 
-impl Responder for PrivateMessageReply {
-    type Body = BoxBody;
+impl<T> Responder for T
+where
+    T: Response<Output = T> + serde::Serialize,
+{
+    type Body = actix_web::body::BoxBody;
 
     fn respond_to(self, _req: &HttpRequest) -> HttpResponse {
-        HttpResponse::Ok().json(&self.0)
+        HttpResponse::Ok().json(self)
     }
 }
 
@@ -48,3 +51,5 @@ pub fn configure_routes() -> Scope {
         .route("/messages", web::post().to(send_private_message))
         .route("/messages/reply", web::post().to(get_private_message_reply))
 }
+
+

@@ -49,3 +49,9 @@ pub fn get_posts() -> Vec<PostImpl> {
         updated_at: "2025-03-07T12:30:00Z".to_string(),
     }]
 }
+
+#[derive(Debug)]
+pub struct PostData {
+    pub title: String,
+    pub content: String
+}
