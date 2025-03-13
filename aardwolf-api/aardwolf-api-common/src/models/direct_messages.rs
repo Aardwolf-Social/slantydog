@@ -11,4 +11,4 @@ pub struct PrivateMessage {
 }
 
 #[derive(Serialize, Deserialize)]
-pub struct PrivateMessageReply(pub(crate) PrivateMessage);
+pub struct PrivateMessageReply(pub PrivateMessage);

@@ -1,6 +1,6 @@
 // aardwolf-api/database-api/src/database_main.rs
 //
-use crate::database_engines::mysql::MysqlConnection;
+use crate::mysql::MysqlConnection;
 use crate::database_engines::postgres::PgConnection;
 use crate::database_engines::sqlite::SqliteConnection;
 

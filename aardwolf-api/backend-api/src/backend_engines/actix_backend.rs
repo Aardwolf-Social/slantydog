@@ -1,9 +1,9 @@
-// aardwolf-api/src/backend_engines/actix_backend.rs
-use aardwolf_api_common::models::direct_messages::{PrivateMessage, PrivateMessageReply}; // ✅ Use common direct_messages module
+// backend-api/src/backend_engines/actix_backend.rs
+use crate::backend_engines::actix_responses::ActixPrivateMessageReply;
 use crate::routes::posts::{create_post, get_posts};
+use aardwolf_api_common::models::direct_messages::{PrivateMessage, PrivateMessageReply};
 use aardwolf_api_common::models::posts::PostImpl;
-use actix_web::body::BoxBody;
-use actix_web::{web, HttpRequest, HttpResponse, Responder, Scope};
+use actix_web::{web, HttpResponse, Scope, Responder};
 
 /// Creates a new post and returns the created post as JSON.
 async fn create_post_actix(data: web::Json<PostImpl>) -> HttpResponse {
@@ -22,22 +22,13 @@ async fn get_posts_actix() -> HttpResponse {
 }
 
 /// Sends a new private message.
-async fn send_private_message(data: web::Json<PrivateMessage>) -> HttpResponse {
-    HttpResponse::Ok().json(data.into_inner()) // ✅ Placeholder response for now
+async fn send_private_message(data: web::Json<PrivateMessage>) -> impl Responder {
+    ActixPrivateMessageReply(PrivateMessageReply(data.into_inner()))
 }
 
 /// Retrieves a private message reply.
-async fn get_private_message_reply(data: web::Json<PrivateMessage>) -> HttpResponse {
-    let reply = PrivateMessageReply(data.into_inner());
-    HttpResponse::Ok().json(reply) // ✅ Placeholder response for now
-}
-
-impl Responder for PrivateMessageReply {
-    type Body = BoxBody;
-
-    fn respond_to(self, _req: &HttpRequest) -> HttpResponse {
-        HttpResponse::Ok().json(&self.0)
-    }
+async fn get_private_message_reply(data: web::Json<PrivateMessage>) -> impl Responder {
+    ActixPrivateMessageReply(PrivateMessageReply(data.into_inner()))
 }
 
 /// Configures Actix routes.

@@ -1,6 +1,7 @@
 // backend-api/src/lib.rs
 pub mod backend_engines {
     pub mod actix_backend;
+    pub mod actix_responses;
     pub mod warp_backend;
 }
 pub mod routes {
