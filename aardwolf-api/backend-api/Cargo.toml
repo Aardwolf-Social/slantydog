@@ -13,10 +13,10 @@ repository = "https://github.com/SlantyDog/aardwolf-api"
 aardwolf-api-common = { path = "../aardwolf-api-common" }
 
 # External Dependencies
-actix-web = { version = "4.9.0", features = ["openssl", "rustls"], optional = true }
+actix-web = { version = "4.10.2", features = ["openssl", "rustls"], optional = true }
 warp = { version = "0.3", optional = true }
-tokio = { version = "1.43.0", features = ["rt", "rt-multi-thread", "macros"] }
-serde = { version = "1.0.218", features = ["derive"] }
+tokio = { version = "1.44.1", features = ["rt", "rt-multi-thread", "macros"] }
+serde = { version = "1.0.219", features = ["derive"] }
 chrono = "0.4.40"
 
 [features]
