@@ -1,4 +1,4 @@
-// db_handler.rs
+// database-api/src/traits/db_handler.rs
 extern crate aardwolf_api_common;
 use aardwolf_api_common::models::error::Error;
 use aardwolf_api_common::models::posts::Post;

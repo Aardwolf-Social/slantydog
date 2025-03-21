@@ -35,6 +35,7 @@ name = "aardwolf-api-frontend"
 version = "0.1.0"
 dependencies = [
  "aardwolf-api-common",
+ "actix-web",
 ]
 
 [[package]]

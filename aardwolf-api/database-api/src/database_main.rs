@@ -1,8 +1,8 @@
 // aardwolf-api/database-api/src/database_main.rs
 //
 use crate::mysql::MysqlConnection;
-use crate::database_engines::postgres::PgConnection;
-use crate::database_engines::sqlite::SqliteConnection;
+use crate::postgres::PgConnection;
+use crate::sqlite::SqliteConnection;
 
 pub enum DatabaseConnection {
     PgConnection(PgConnection),
