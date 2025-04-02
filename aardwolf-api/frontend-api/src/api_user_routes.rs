@@ -1,41 +1,32 @@
-//-
-// This is a starter for the Aardwolf Frontend API
-//
+// aardwolf-api/frontend-api/src/api_user_routes.rs
 
-use actix_web::{web, App, HttpResponse, HttpServer, Responder};
+use crate::routes;
+use crate::handlers;
 
-async fn get_users() -> impl Responder {
-    // Logic to retrieve a list of users (replace this with actual implementation)
-    let users = vec!["User 1", "User 2", "User 3"]; // Sample users
-
-    HttpResponse::Ok().json(users)
-}
-async fn get_followers() -> impl Responder {
-    // Logic to retrieve followers of a user (replace this with actual implementation)
-    let followers = vec!["Follower 1", "Follower 2", "Follower 3"]; // Sample followers
-
-    HttpResponse::Ok().json(followers)
-}
-async fn follow_user() -> impl Responder {
-    // Logic to follow a user (replace this with actual implementation)
-    let message = "User followed successfully"; // Sample message
-
-    HttpResponse::Ok().json(message)
-}
-async fn unfollow_user() -> impl Responder {
-    // Logic to unfollow a user (replace this with actual implementation)
-    let message = "User unfollowed successfully"; // Sample message
-
-    HttpResponse::Ok().json(message)
-}
+// Define the main function to create the HTTP server
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
-            .route("/api/users/:userId/posts", web::get().to())
-            .route("/api/users/:userId/followers", web::get().to())
-            .route("/api/users/follow/:userId", web::get().to())
-            .route("/api/users/unfollow/:userId", web::get().to())
+            .service(web::resource("/api/users").route(web::get().to(handlers::get_users)))
+            .configure(|cfg| {
+                cfg.service(
+                    web::resource("/api/users/:userId/posts")
+                        .route(web::get().to(handlers::get_user_posts)),
+                )
+                .service(
+                    web::resource("/api/users/:userId/followers")
+                        .route(web::get().to(handlers::get_user_followers)),
+                )
+                .service(
+                    web::resource("/api/users/follow/:userId")
+                        .route(web::get().to(handlers::follow_user)),
+                )
+                .service(
+                    web::resource("/api/users/unfollow/:userId")
+                        .route(web::get().to(handlers::unfollow_user)),
+                );
+            })
     })
     .bind("127.0.0.1:8080")?
     .run()
